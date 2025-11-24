@@ -21,3 +21,12 @@ gym.register(
     },
 )
 
+gym.register(
+    id="Eason-Cartpole-Swing-Up-angle-V1",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    disable_env_checker=True,
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.cartpole_env_cfg_angle_v1:RlPlaygroundEnvCfg",
+        "sb3_cfg_entry_point": f"{agents.__name__}:sb3_ppo_cfg.yaml",
+    },
+)

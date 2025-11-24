@@ -1,0 +1,1 @@
+python scripts/sb3/train.py --task=Eason-Cartpole-Swing-Up --num_env=1024 --headless --epoch 20_000_000

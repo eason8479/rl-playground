@@ -44,6 +44,11 @@ class RlPlaygroundSceneCfg(InteractiveSceneCfg):
     # robot
     robot: ArticulationCfg = CARTPOLE_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
 
+    robot.init_state.joint_pos = {
+        "cart_to_pole": 0.5, # Override specific joint
+    }
+
+
     # lights
     dome_light = AssetBaseCfg(
         prim_path="/World/DomeLight",
@@ -126,15 +131,7 @@ class RewardsCfg:
         weight=-1.0,
         params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"])}
     )
-    '''
-    pole_pos = RewTerm(
-        func=mdp.joint_pos_target_l2,
-        weight=-1.0,
-        params={"asset_cfg": SceneEntityCfg("robot", joint_names=["cart_to_pole"]), "target": 0.0}
-    ) 
-    '''
 
-     
     # (4) Shaping tasks: lower cart velocity
     cart_vel = RewTerm(
         func=mdp.joint_vel_l1,
@@ -153,7 +150,6 @@ class RewardsCfg:
 @configclass
 class TerminationsCfg:
     """Termination terms for the MDP."""
-
     # (1) Time out
     time_out = DoneTerm(
         func=mdp.time_out, 
