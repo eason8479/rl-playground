@@ -15,7 +15,7 @@ gym.register(
     entry_point="isaaclab.envs:ManagerBasedRLEnv",
     disable_env_checker=True,
     kwargs={
-        "env_cfg_entry_point": f"{__name__}.robot_arm_env_cfg:RlPlaygroundEnvCfg",
+        "env_cfg_entry_point": f"{__name__}.robot_arm_env_cfg:ME6ReachEnvCfg",
         "sb3_cfg_entry_point": f"{agents.__name__}:sb3_ppo_cfg.yaml",
     },
 )
